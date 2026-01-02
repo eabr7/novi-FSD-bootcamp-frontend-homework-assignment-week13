@@ -1,0 +1,57 @@
+
+/* standard css settings*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border: transparent;
+      border-radius: 15px;
+  }
+
+li {
+    list-style: none;
+}
+
+
+.countries {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem;
+}
+
+.country-population {
+    font-weight: bold;
+    font-size: large;
+}
+
+
+/* colours of regions */
+.africa {
+    color: blue;
+}
+
+.americas {
+    color: green;
+}
+
+.asia {
+    color: red;
+}
+
+.europe {
+    color: yellow;
+}
+
+.oceania {
+    color: purple;
+}

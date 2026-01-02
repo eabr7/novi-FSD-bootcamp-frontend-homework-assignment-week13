@@ -1,6 +1,8 @@
 import './App.css';
 import axios from 'axios';
 import {useState} from "react";
+import {getRegion} from "./helpers/region.js";
+import worldMap from './assets/world_map.png';
 
 
 function App() {
@@ -35,7 +37,9 @@ function App() {
 
     return (
         <>
-            Opdracht week 13!
+            <h1>COUNTRIES</h1>
+
+            <img src={worldMap} alt="Wereldkaart"/>
 
             {countriesInfo.length === 0 && <button type="button" onClick={fetchCountriesInfo} disabled={loading}>
                     Haal informatie op
@@ -43,13 +47,15 @@ function App() {
 
             {error && <p className="error-message">Er is iets misgegaan met de data ophalen. Probeer het opnieuw.</p>}
 
+            {/* mappen over countriesInfo, vergeet niet om een key te gebruiken in het element! ivm DOM */}
+            {/* Gebruik className van element voor het veranderen van de CSS!  */}
             {countriesInfo.length > 0 ?
             (<ul>
                 {countriesInfo.map((country) => {
-                return <li key={country.name.common}>
-                        <p>{country.name.official}</p>
+                return <li key={country.name.common} className="countries">
+                        <p className={getRegion(country.region)}>{country.name.official}</p>
                         <img src={country.flags.png} alt={country.flags.alt}/>
-                        <p>Has a population of {country.population} people</p>
+                        <p className="country-population">Has a population of {country.population} people</p>
                         <p>{country.region}</p>
                     </li>})}
             </ul>) : (<p>Druk op de knop om de informatie op te halen</p>) }
