@@ -19,9 +19,12 @@ function App() {
                     fields: 'name,flags,population,region',
                 },
             });
+
+            // spread operator gebruiken ...response.data omdat sort() de originele array anders aanpast!
+            // Alles wat muteert, altijd eerst kopiëren met spread operator!
+            const sortedCountries = [...response.data].sort((a, b) => a.population - b.population);
             console.log(response.data[0]);
-            console.log(response.data);
-            setCountriesInfo(response.data);
+            setCountriesInfo(sortedCountries);
         } catch (error) {
             console.error(error);
             toggleError(true);
@@ -44,7 +47,8 @@ function App() {
             (<ul>
                 {countriesInfo.map((country) => {
                 return <li key={country.name.common}>
-                        <img src={country.flags.png} alt={`Flag of ${country.name.official}`}/>
+                        <p>{country.name.official}</p>
+                        <img src={country.flags.png} alt={country.flags.alt}/>
                         <p>Has a population of {country.population} people</p>
                         <p>{country.region}</p>
                     </li>})}
